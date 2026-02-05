@@ -1,0 +1,25 @@
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.contact-links a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--google-blue);
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.contact-links a:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 640px) {
+  .contact-links {
+    flex-direction: row;
+    gap: 24px;
+  }
+}

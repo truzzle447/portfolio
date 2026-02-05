@@ -1,0 +1,48 @@
+.header {
+  width: 100%;
+}
+
+.header-inner {
+  width: min(1200px, 94vw);
+  margin: 0 auto;
+  padding: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+}
+
+.theme-toggle {
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-muted);
+  color: var(--text);
+}
