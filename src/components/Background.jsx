@@ -51,6 +51,12 @@ export default function Background() {
           </span>
         </li>
         <li>
+          <span className="signal-label">Web Dev Tech Stack</span>
+          <span className="signal-text">
+            HTML, CSS, JavaScript, Django.
+          </span>
+        </li>
+        <li>
           <span className="signal-label">Direction</span>
           <span className="signal-text">
             Actively focused on AI, systems, and applied software.
