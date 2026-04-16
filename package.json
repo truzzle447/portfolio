@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "record:desq": "node scripts/record-desq.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",
