@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DESQ — Teaser</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #080a0f; --purple: #7c6af7; --green: #00f5a0; --white: #f0f0f0; }
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  section { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; scroll-snap-align: start; padding: 60px 40px; }
+  .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(124,106,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,106,247,0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridDrift 20s linear infinite; }
+  @keyframes gridDrift { 0% { transform: translate(0,0); } 100% { transform: translate(60px, 60px); } }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; animation: orbFloat 8s ease-in-out infinite; }
+  .orb-1 { width: 400px; height: 400px; background: var(--purple); top: -100px; right: -100px; }
+  .orb-2 { width: 300px; height: 300px; background: var(--green); bottom: -80px; left: -80px; animation-delay: 3s; }
+  .orb-3 { width: 200px; height: 200px; background: #ff6b6b; top: 50%; left: 30%; animation-delay: 5s; }
+  @keyframes orbFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  #slide-1 .content { text-align: center; z-index: 10; position: relative; }
+  .logo-mark { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 6px; color: var(--green); text-transform: uppercase; margin-bottom: 30px; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+  h1.hero { font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; line-height: 0.95; letter-spacing: -3px; margin-bottom: 30px; opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+  h1.hero span.accent { color: var(--purple); } h1.hero span.green { color: var(--green); }
+  .hero-sub { font-size: 1rem; color: #888; font-weight: 300; letter-spacing: 1px; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+  .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 0.65rem; color: #444; letter-spacing: 3px; animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+  .problem-wrap { position: relative; z-index: 10; max-width: 700px; }
+  .slide-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 4px; color: var(--purple); text-transform: uppercase; margin-bottom: 40px; display: block; }
+  .problem-lines p { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; line-height: 1.3; color: #444; margin-bottom: 8px; transition: color 0.3s; }
+  .problem-lines p.lit { color: var(--white); } .problem-lines p.accent-line { color: var(--purple); }
+  .phone-graphic { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); opacity: 0.06; font-size: 18rem; animation: phoneBuzz 0.15s ease infinite alternate; user-select: none; }
+  @keyframes phoneBuzz { 0% { transform: translateY(-50%) rotate(-2deg); } 100% { transform: translateY(-50%) rotate(2deg); } }
+  #slide-3 { background: linear-gradient(135deg, #080a0f 0%, #0f0d1a 100%); }
+  .insight-wrap,.how-wrap,.who-wrap,.demo-wrap { z-index: 10; position: relative; max-width: 800px; width: 100%; }
+  .big-quote { font-size: clamp(1.8rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 30px; }
+  .big-quote em { font-style: normal; color: var(--green); position: relative; }
+  .big-quote em::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--green); opacity:0.4; }
+  .insight-body { font-size: 1rem; color: #666; line-height: 1.8; font-weight: 300; }
+  .how-wrap h2,.who-wrap h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 50px; letter-spacing: -1px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2px; }
+  .step,.biz { background: #0d0f18; border: 1px solid #1a1d2e; padding: 24px 20px; transition: all 0.3s; }
+  .step:hover { border-color: var(--purple); transform: translateY(-4px); }
+  .step-num { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--purple); letter-spacing: 2px; margin-bottom: 16px; display: block; }
+  .step-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+  .step h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; color: var(--white); }
+  .step p { font-size: 0.75rem; color: #555; line-height: 1.7; }
+  .business-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; }
+  .biz:hover { background:#13151f; border-color:var(--green); } .biz:hover .biz-name{ color:var(--green); }
+  .biz-icon { font-size: 1.6rem; display: block; margin-bottom: 12px; } .biz-name { font-size: 0.8rem; font-weight: 700; display: block; color: #ccc; margin-bottom: 4px; } .biz-pain { font-size: 0.72rem; color: #444; line-height: 1.6; }
+  .demo-wrap h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -1px; }
+  .chat-window { background: #0d1117; border: 1px solid #1e2030; border-radius: 16px; overflow: hidden; }
+  .chat-header { background: #111827; padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #1e2030; }
+  .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,var(--purple),var(--green)); display:flex; align-items:center; justify-content:center; font-size:1rem; }
+  .chat-info strong { display:block; font-size:.82rem; } .chat-info span { font-size:.7rem; color:var(--green); }
+  .chat-body { padding: 24px 20px; display:flex; flex-direction:column; gap:12px; }
+  .bubble { max-width:80%; padding:10px 14px; border-radius:12px; font-size:.82rem; line-height:1.6; opacity:0; animation:bubbleIn .4s ease forwards; }
+  .bubble.user { background:#1e2030; color:#ccc; align-self:flex-end; border-bottom-right-radius:3px; }
+  .bubble.bot { background:linear-gradient(135deg,#1a1660,#0f1a30); border:1px solid rgba(124,106,247,0.2); color:#ddd; align-self:flex-start; border-bottom-left-radius:3px; }
+  .bubble:nth-child(1){animation-delay:.3s}.bubble:nth-child(3){animation-delay:1.2s}.bubble:nth-child(4){animation-delay:2.6s}.bubble:nth-child(5){animation-delay:4s}.bubble:nth-child(6){animation-delay:5.5s}.bubble:nth-child(7){animation-delay:7s}
+  @keyframes bubbleIn { from { opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
+  .typing{display:flex;gap:4px;padding:10px 14px;background:linear-gradient(135deg,#1a1660,#0f1a30);border:1px solid rgba(124,106,247,0.2);border-radius:12px;border-bottom-left-radius:3px;align-self:flex-start;opacity:0;animation:bubbleIn .4s ease 2s forwards,fadeOut .3s ease 2.4s forwards;width:fit-content}
+  .typing span{width:6px;height:6px;background:#555;border-radius:50%;animation:typingDot 1s ease infinite}.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes typingDot {0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}} @keyframes fadeOut{to{opacity:0;height:0;padding:0;margin:0}}
+  .cta-wrap { z-index:10; position:relative; text-align:center; max-width:600px; }
+  .cta-eyebrow { font-family:'Space Mono', monospace; font-size:.7rem; letter-spacing:4px; color:var(--green); margin-bottom:24px; display:block; }
+  .cta-headline { font-size:clamp(2rem,6vw,4rem); font-weight:900; line-height:1.05; letter-spacing:-2px; margin-bottom:24px; }
+  .cta-headline .strike { position:relative; color:#444; } .cta-headline .strike::after { content:''; position:absolute; left:0; right:0; top:50%; height:2px; background:#333; }
+  .cta-body { font-size:.95rem; color:#555; line-height:1.8; margin-bottom:40px; }
+  .cta-action { font-family:'Space Mono', monospace; font-size:.75rem; letter-spacing:3px; color:var(--white); background:var(--purple); padding:16px 36px; display:inline-block; text-transform:uppercase; }
+  .wa-hint { margin-top:20px; font-size:.72rem; color:#333; font-family:'Space Mono', monospace; letter-spacing:2px; }
+  .nav-dots { position: fixed; right:24px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:100; }
+  .nav-dot { width:6px; height:6px; border-radius:50%; background:#333; cursor:pointer; transition:background .3s, transform .3s; }
+  .nav-dot.active { background:var(--purple); transform:scale(1.5); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px);} to {opacity:1; transform:translateY(0);} }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events:none; z-index:999; opacity:.4; }
+  .circuit-svg { position:absolute; inset:0; width:100%; height:100%; opacity:.04; }
+  @media (max-width: 600px) { section { padding:40px 20px; } .nav-dots{display:none;} .phone-graphic{font-size:10rem;} }
+</style>
+</head>
+<body>
+<div class="nav-dots"><div class="nav-dot active"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div></div>
+<section id="slide-1"><div class="grid-bg"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><svg class="circuit-svg" viewBox="0 0 1200 800"><g stroke="#7c6af7" stroke-width="0.5" fill="none"><path d="M0,400 L200,400 L200,200 L500,200 L500,400 L1200,400" stroke-dasharray="8,4" opacity="0.6"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="3s" repeatCount="indefinite"/></path><path d="M0,600 L300,600 L300,300 L700,300 L700,600 L1200,600" stroke-dasharray="8,4" opacity="0.4"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="4s" repeatCount="indefinite"/></path></g></svg><div class="content"><div class="logo-mark">Introducing DESQ</div><h1 class="hero">Your business<br><span class="accent">never</span> sleeps.<br><span class="green">Now your assistant</span><br>doesn't either.</h1><p class="hero-sub">An AI agent that works your WhatsApp while you work.</p></div><div class="scroll-hint">SCROLL ↓</div></section>
+<section id="slide-2"><div class="grid-bg"></div><div class="orb orb-3" style="opacity:0.08;"></div><div class="phone-graphic">📱</div><div class="problem-wrap"><span class="slide-label">The problem</span><div class="problem-lines" id="problemLines"><p>You're with a client.</p><p>Your phone won't stop buzzing.</p><p>Three people want a booking.</p><p>You reply to one.</p><p class="accent-line">The other two go somewhere else.</p></div></div></section>
+<section id="slide-3"><svg class="circuit-svg" viewBox="0 0 1200 800"><g stroke="#00f5a0" stroke-width="0.5" fill="none"><line x1="0" y1="100" x2="1200" y2="700" stroke-dasharray="6,6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="6s" repeatCount="indefinite"/></line><line x1="1200" y1="100" x2="0" y2="700" stroke-dasharray="6,6"><animate attributeName="stroke-dashoffset" from="0" to="24" dur="8s" repeatCount="indefinite"/></line></g></svg><div class="orb orb-1" style="opacity:0.08; background:#00f5a0;"></div><div class="insight-wrap"><span class="slide-label">The truth</span><p class="big-quote">That's not a <em>you</em> problem.<br>That's a <em>system</em> problem.</p><p class="insight-body">You're not losing customers because you're bad at your job.<br>You're losing them because no business can be in two places at once.<br><br>Until now.</p></div></section>
+<section id="slide-4"><div class="grid-bg"></div><div class="how-wrap"><span class="slide-label">How it works</span><h2>Simple. Automatic.<br>Sounds like you.</h2><div class="steps"><div class="step"><span class="step-num">01</span><span class="step-icon">💬</span><h3>Customer messages</h3><p>They WhatsApp your number like they always do.</p></div><div class="step"><span class="step-num">02</span><span class="step-icon">🧠</span><h3>Agent understands</h3><p>An AI trained on your business knows what they need.</p></div><div class="step"><span class="step-num">03</span><span class="step-icon">⚡</span><h3>Instant reply</h3><p>Answers questions and books appointments in seconds.</p></div><div class="step"><span class="step-num">04</span><span class="step-icon">📅</span><h3>Your calendar updates</h3><p>Every booking lands in your calendar automatically.</p></div></div></div></section>
+<section id="slide-5"><div class="grid-bg"></div><div class="who-wrap"><span class="slide-label">Built for</span><h2>If customers message you first,<br>this is for you.</h2><div class="business-grid"><div class="biz"><span class="biz-icon">💇🏾‍♀️</span><span class="biz-name">Salons & Nail Bars</span><span class="biz-pain">Bookings slipping through.</span></div><div class="biz"><span class="biz-icon">📚</span><span class="biz-name">Private Tutors</span><span class="biz-pain">One calendar, zero admin help.</span></div><div class="biz"><span class="biz-icon">🏠</span><span class="biz-name">Guesthouses</span><span class="biz-pain">Same questions from every guest.</span></div><div class="biz"><span class="biz-icon">🔧</span><span class="biz-name">Mechanics</span><span class="biz-pain">Quote requests unanswered.</span></div><div class="biz"><span class="biz-icon">🍱</span><span class="biz-name">Home Caterers</span><span class="biz-pain">Orders tracked manually.</span></div><div class="biz"><span class="biz-icon">🏋🏾</span><span class="biz-name">Personal Trainers</span><span class="biz-pain">Everything done over WhatsApp.</span></div></div></div></section>
+<section id="slide-6"><div class="orb orb-1" style="opacity:0.07;"></div><div class="demo-wrap"><span class="slide-label">In action</span><h2>A real conversation.<br>Zero effort from you.</h2><div class="chat-window"><div class="chat-header"><div class="chat-avatar">✂️</div><div class="chat-info"><strong>Zanele's Hair Studio</strong><span>● online</span></div></div><div class="chat-body"><div class="bubble user">Hi, are you available Saturday morning?</div><div class="typing"><span></span><span></span><span></span></div><div class="bubble bot">Yes, I have slots at 9am and 11am.</div><div class="bubble user">Box braids please. How long?</div><div class="bubble bot">About 3–4 hours. Want me to book 9am?</div><div class="bubble user">Yes please!</div><div class="bubble bot">Done! ✅ You'll get a reminder Friday evening.</div></div></div><p style="font-size:0.72rem; color:#333; margin-top:16px; font-family:'Space Mono',monospace; letter-spacing:1px;">ZANELE WAS WITH A CLIENT THE ENTIRE TIME.</p></div></section>
+<section id="slide-7"><div class="grid-bg"></div><div class="orb orb-1" style="opacity:0.12;"></div><div class="orb orb-2" style="opacity:0.12;"></div><div class="cta-wrap"><span class="cta-eyebrow">Available now · JHB</span><h2 class="cta-headline">Stop losing customers<br>to <span class="strike">unanswered</span><br>messages.</h2><p class="cta-body">DESQ is a WhatsApp AI agent built for small businesses in Johannesburg.</p><div class="cta-action">DM me to see it live</div><p class="wa-hint">→ WORKS ON ANY WHATSAPP</p></div></section>
+<script>
+const sections = document.querySelectorAll('section');
+const dots = document.querySelectorAll('.nav-dot');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const idx = [...sections].indexOf(entry.target);
+      dots.forEach((d) => d.classList.remove('active'));
+      dots[idx]?.classList.add('active');
+    }
+  });
+}, { threshold: 0.5 });
+sections.forEach((s) => observer.observe(s));
+const lines = document.querySelectorAll('.problem-lines p');
+const problemObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    lines.forEach((line, i) => {
+      setTimeout(() => {
+        lines.forEach((l) => l.classList.remove('lit'));
+        line.classList.add('lit');
+      }, i * 600);
+    });
+  }
+}, { threshold: 0.5 });
+problemObserver.observe(document.getElementById('slide-2'));
+</script>
+</body>
+</html>
