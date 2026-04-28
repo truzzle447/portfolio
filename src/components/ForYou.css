@@ -1,0 +1,81 @@
+.for-you-console {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 2.5vw, 32px);
+  display: grid;
+  gap: 18px;
+}
+
+.for-you-console h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+}
+
+.for-you-lead {
+  margin: 0;
+  color: var(--muted-text);
+  max-width: 66ch;
+}
+
+.mode-switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mode-button {
+  border: 1px solid transparent;
+  background: var(--surface-muted);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.mode-button:hover {
+  transform: translateY(-1px);
+}
+
+.mode-button.active {
+  background: var(--surface);
+}
+
+.mode-panel {
+  border-radius: 14px;
+  background: var(--surface-muted);
+  padding: 18px;
+  border-left: 4px solid var(--google-blue);
+}
+
+.mode-mission {
+  margin: 0;
+  font-size: 1.04rem;
+}
+
+.mode-panel ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  color: var(--muted-text);
+}
+
+.is-blue.active,
+.mode-panel.is-blue {
+  border-color: var(--google-blue);
+}
+
+.is-green.active,
+.mode-panel.is-green {
+  border-color: var(--google-green);
+}
+
+.is-yellow.active,
+.mode-panel.is-yellow {
+  border-color: var(--google-yellow);
+}
