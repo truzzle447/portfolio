@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useRef, useState } from "react";
 import "./ForYou.css";
 
 const modes = [
@@ -27,11 +27,38 @@ const modes = [
 
 export default function ForYou() {
   const [activeModeId, setActiveModeId] = useState(modes[0].id);
+  const tabRefs = useRef([]);
 
-  const activeMode = useMemo(
-    () => modes.find((mode) => mode.id === activeModeId) ?? modes[0],
-    [activeModeId]
-  );
+  const activateMode = (index) => {
+    setActiveModeId(modes[index].id);
+    tabRefs.current[index]?.focus();
+  };
+
+  const handleTabKeyDown = (event, currentIndex) => {
+    let nextIndex;
+
+    switch (event.key) {
+      case "ArrowRight":
+      case "ArrowDown":
+        nextIndex = (currentIndex + 1) % modes.length;
+        break;
+      case "ArrowLeft":
+      case "ArrowUp":
+        nextIndex = (currentIndex - 1 + modes.length) % modes.length;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = modes.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    activateMode(nextIndex);
+  };
 
   return (
     <section className="section for-you" id="for-you">
@@ -43,28 +70,49 @@ export default function ForYou() {
         </p>
 
         <div className="mode-switches" role="tablist" aria-label="Select your mission mode">
-          {modes.map((mode) => (
-            <button
-              key={mode.id}
-              type="button"
-              role="tab"
-              className={`mode-button ${mode.colorClass} ${activeMode.id === mode.id ? "active" : ""}`}
-              aria-selected={activeMode.id === mode.id}
-              onClick={() => setActiveModeId(mode.id)}
-            >
-              {mode.name}
-            </button>
-          ))}
+          {modes.map((mode, index) => {
+            const isActive = activeModeId === mode.id;
+
+            return (
+              <button
+                key={mode.id}
+                ref={(element) => {
+                  tabRefs.current[index] = element;
+                }}
+                id={`mode-${mode.id}-tab`}
+                type="button"
+                role="tab"
+                className={`mode-button ${mode.colorClass} ${isActive ? "active" : ""}`}
+                aria-controls={`mode-${mode.id}-panel`}
+                aria-selected={isActive}
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => setActiveModeId(mode.id)}
+                onKeyDown={(event) => handleTabKeyDown(event, index)}
+              >
+                {mode.name}
+              </button>
+            );
+          })}
         </div>
 
-        <article className={`mode-panel ${activeMode.colorClass}`} role="tabpanel">
-          <p className="mode-mission">{activeMode.mission}</p>
-          <ul>
-            {activeMode.stack.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
+        {modes.map((mode) => (
+          <article
+            key={mode.id}
+            id={`mode-${mode.id}-panel`}
+            className={`mode-panel ${mode.colorClass}`}
+            role="tabpanel"
+            aria-labelledby={`mode-${mode.id}-tab`}
+            hidden={activeModeId !== mode.id}
+            tabIndex={0}
+          >
+            <p className="mode-mission">{mode.mission}</p>
+            <ul>
+              {mode.stack.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </section>
   );
